@@ -29,8 +29,13 @@
   border-radius: 0.5rem;
 }
 
-.spinner {
+.spinner, .error {
   height: 100%;
+}
+
+.error {
+  text-align: center;
+  color:red;
 }
 
 .avatar {

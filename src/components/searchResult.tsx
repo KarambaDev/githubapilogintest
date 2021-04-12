@@ -23,6 +23,8 @@ const SearchResult: FC<IProps> = ({login}) => {
       changeResults({loading: true})
       axios.get(page.link ?? `https://api.github.com/search/users?q=${login}+in%3Alogin&per_page=9&page=1`)
       .then(response => {
+        if (!response.data.items) return changeResults({ error: 'Something going wrong', loading: false })
+        if (response.data.items.length === 0) return changeResults({ error: 'No results', loading: false })
         return changeResults({
           data: response.data,
           pagination: linkParse(response.headers.link),
